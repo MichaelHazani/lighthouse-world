@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: b93e002e0392f4fdc997c7e51887ebad
+labels:
+- Spline
+- curve
+- path
+- animation
+- SuperSplines
+- interpolation
+- modifier
+- mesh
+- curved
+PluginImporter:
+  serializedVersion: 1
+  iconMap: {}
+  executionOrder: {}
+  isPreloaded: 0
+  platformData:
+    Any:
+      enabled: 1
+      settings: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
