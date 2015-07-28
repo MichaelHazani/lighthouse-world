@@ -5,10 +5,12 @@ using System.Collections;
 public class turnOn : MonoBehaviour {
 public GameObject lightParent;
 	private AudioSource audio;
+	private AudioSource engine;
 	private bool isLight;
 	// Use this for initialization
 	void Start () {
 	audio = GameObject.FindWithTag("lever").GetComponent<AudioSource>();
+	engine = GameObject.FindWithTag("engine").GetComponent<AudioSource>();
 	isLight = false;
 	}
 
@@ -27,6 +29,7 @@ public GameObject lightParent;
 			{
 				light.enabled = true;
 			}
+			engine.Play();
 			
 			
 		} else {
@@ -41,7 +44,7 @@ public GameObject lightParent;
 			{
 				light.enabled = false;
 			}
-			
+			engine.Stop();	
 		}
 
 	}
