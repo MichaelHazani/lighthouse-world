@@ -11,38 +11,49 @@ public GameObject lightParent;
 	audio = GameObject.FindWithTag("lever").GetComponent<AudioSource>();
 	isLight = false;
 	}
-	
+
+	IEnumerator MyMethod() {
+		yield return new WaitForSeconds(5.5f);
+
+		if (!isLight) {
+		
+			isLight = true;
+			var parentLight = GameObject.FindWithTag("allLights");
+			parentLight.GetComponent<RotateLight>().enabled = true;
+			
+			var lights = lightParent.GetComponentsInChildren<Light>(true);
+			
+			foreach (Light light in lights)
+			{
+				light.enabled = true;
+			}
+			
+			
+		} else {
+
+			isLight = false;
+			var parentLight = GameObject.FindWithTag("allLights");
+			parentLight.GetComponent<RotateLight>().enabled = false;
+			
+			var lights = lightParent.GetComponentsInChildren<Light>(true);
+			
+			foreach (Light light in lights)
+			{
+				light.enabled = false;
+			}
+			
+		}
+
+	}
+
 	// Update is called once per frame
 	void Update () {
+		//Respond to init
 		if(Input.GetButtonDown("Test")){
-			if (!isLight) {
-				isLight = true;
-				var parentLight = GameObject.FindWithTag("allLights");
-				parentLight.GetComponent<RotateLight>().enabled = true;
+			audio.Play();
+			StartCoroutine("MyMethod");
 
-				var lights = lightParent.GetComponentsInChildren<Light>(true);
-				
-				foreach (Light light in lights)
-				{
-					light.enabled = true;
-				}
-				audio.Play();
-
-			} else {
-
-				isLight = false;
-				var parentLight = GameObject.FindWithTag("allLights");
-				parentLight.GetComponent<RotateLight>().enabled = false;
-				
-				var lights = lightParent.GetComponentsInChildren<Light>(true);
-				
-				foreach (Light light in lights)
-				{
-					light.enabled = false;
-				}
-				audio.Play();
-			}
-		}
+					}
 	}
 }
 
