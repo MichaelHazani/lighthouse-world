@@ -4,13 +4,15 @@ using System.Collections;
 
 public class turnOn : MonoBehaviour {
 public GameObject lightParent;
-	private AudioSource audio;
-	private AudioSource engine;
-	private bool isLight;
+private AudioSource audio;
+private AudioSource engine;
+private Animation leverAnim;
+private bool isLight;
 	// Use this for initialization
 	void Start () {
-	audio = GameObject.FindWithTag("lever").GetComponent<AudioSource>();
+	audio = GameObject.FindWithTag("leverSound").GetComponent<AudioSource>();
 	engine = GameObject.FindWithTag("engine").GetComponent<AudioSource>();
+	leverAnim = GameObject.FindWithTag("leverCube").GetComponent<Animation>();
 	isLight = false;
 	}
 
@@ -54,6 +56,16 @@ public GameObject lightParent;
 		//Respond to init
 		if(Input.GetButtonDown("Test")){
 			audio.Play();
+//			GetComponent<Animation>().Play();
+			if (!isLight) {
+				leverAnim["cubeRotate"].speed = 1;
+				leverAnim["cubeRotate"].time = 0;
+				leverAnim.Play ();
+			} else {
+				leverAnim["cubeRotate"].speed = -1;
+				leverAnim["cubeRotate"].time = leverAnim["cubeRotate"].length;
+				leverAnim.Play ();
+			}
 			StartCoroutine("MyMethod");
 
 					}
