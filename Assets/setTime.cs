@@ -7,7 +7,6 @@ public class setTime : MonoBehaviour {
 	void Start () {
 		var script = GameObject.Find("InstantGoodDay").GetComponent<InstantGoodDay>();
 		script.SetMilitaryHour(System.DateTime.Now.ToString ("HH:mm"));
-		Debug.Log (script.GetMilitaryHour ());
 
 	}
 }
