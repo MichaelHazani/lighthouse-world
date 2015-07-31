@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta property="og:title" content="The Lighthouse">
+		<meta property="og:description" content="A small world by Michael Hazani">
+		<meta property="og:image" content="images/icon.gif">
+		<meta property="og:url" content="http://lighthouse.michaelhazani.net">
+		<meta property="og:type" content="art">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>The Lighthouse</title>
+		<script type='text/javascript' src='https://ssl-webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/jquery.min.js'></script>
+		<script type="text/javascript">
+		<!--
+		var unityObjectUrl = "http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject2.js";
+		if (document.location.protocol == 'https:')
+			unityObjectUrl = unityObjectUrl.replace("http://", "https://ssl-");
+		document.write('<script type="text\/javascript" src="' + unityObjectUrl + '"><\/script>');
+		-->
+		</script>
+		<script type="text/javascript">
+		<!--
+			var config = {
+				width: 960,
+				height: 640,
+				params: { enableDebugging:"0" }
+
+			};
+			var u = new UnityObject2(config);
+
+			jQuery(function() {
+				$(".content").focus();
+				$("#instructions").fadeTo(5000 , 1);
+				var $missingScreen = jQuery("#unityPlayer").find(".missing");
+				var $brokenScreen = jQuery("#unityPlayer").find(".broken");
+				$missingScreen.hide();
+				$brokenScreen.hide();
+
+				u.observeProgress(function (progress) {
+					switch(progress.pluginStatus) {
+						case "broken":
+							$brokenScreen.find("a").click(function (e) {
+								e.stopPropagation();
+								e.preventDefault();
+								u.installPlugin();
+								return false;
+							});
+							$brokenScreen.show();
+						break;
+						case "missing":
+							$missingScreen.find("a").click(function (e) {
+								e.stopPropagation();
+								e.preventDefault();
+								u.installPlugin();
+								return false;
+							});
+							$missingScreen.show();
+						break;
+						case "installed":
+							$missingScreen.remove();
+						break;
+						case "first":
+						break;
+					}
+				});
+				u.initPlugin(jQuery("#unityPlayer")[0], "Lighthouse.unity3d");
+			});
+		-->
+		</script>
+		<style type="text/css">
+		<!--
+		body {
+			font-family: Helvetica, Verdana, Arial, sans-serif;
+			background-color: black;
+			color: white;
+			text-align: center;
+			cursor: none;
+		}
+		a:link, a:visited {
+			color: #bfbfbf;
+		}
+		a:active, a:hover {
+			color: #bfbfbf;
+		}
+		p.header {
+			font-size: small;
+		}
+		p.header span {
+			font-weight: bold;
+		}
+		p.footer {
+			font-size: x-small;
+		}
+		div.content {
+			margin: auto;
+			width: 960px;
+		}
+		div.broken,
+		div.missing {
+			margin: auto;
+			position: relative;
+			top: 50%;
+			width: 193px;
+		}
+		div.broken a,
+		div.missing a {
+			height: 63px;
+			position: relative;
+			top: -31px;
+		}
+		div.broken img,
+		div.missing img {
+			border-width: 0px;
+		}
+		div.broken {
+			display: none;
+		}
+		div#unityPlayer {
+/*			cursor: default;*/
+			height: 640px;
+			width: 960px;
+		}
+
+		#instructions {
+			font-family: "courier new";
+			color: "white";
+			text-align:center;
+			margin-top: 20px;
+			opacity: 0;
+
+		}
+		-->
+		</style>
+	</head>
+	<body>
+		<p class="header" style="font-family: 'courier new'">The Lighthouse <br> a small World by Michael Hazani <br><br> <a href="https://github.com/MichaelHazani/lighthouse-world">Github</a>
+		<a href="http://michaelhazani.net">Tumblr</a><br><a href="./Lighthouse-World.zip">Download for Mac</a>   <a href="./Lighthouse_win.zip">Download for PC</a></p><br>
+		<div class="content">
+			<div id="unityPlayer">
+				<div class="missing">
+					<a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
+						<img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="instructions">
+			Click inside the world to begin <br>
+			WASD + mouse to look, move, interact <br>
+			Shift to run, Space to jump <br>
+			F for full screen<br><br><br>
+			If you visit at night, the piano will play you a nocturne. <br><br><br>
+			(Unity's webplayer is problematic but solvable on Chrome - see <a href="http://answers.unity3d.com/questions/183262/web-player-will-not-install-on-google-chrome.html">here</a>)
+
+		</div>
+
+	</body>
+</html>
