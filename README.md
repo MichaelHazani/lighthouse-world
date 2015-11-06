@@ -1,5 +1,6 @@
 # The Lighthouse
 A Small World by Michael Hazani
+
 Part of the **1 week / 1 art** project
 
 
